@@ -139,6 +139,7 @@ if (!empty($lParametroExibeMenu) && $lParametroExibeMenu === "false") {
   <input type="BUTTON" id="desativar" value="Desativar"/>
   <input type="BUTTON" id="testar"    value="Testar"   />
   <input type="BUTTON" id="btnAcompanharTraceLog" value="Acompanhar TraceLog"   />
+  <input type="BUTTON" id="btnExtensionLogs"      value="Extension Logs"   />
 </div>
 
   <?
@@ -156,10 +157,11 @@ try {
     function() {
 
 
-      var oBotaoAtivar     = document.getElementById('ativar');
-      var oBotaoDesativar  = document.getElementById('desativar');
-      var oBotaoTestar     = document.getElementById('testar');
-      var oBotaoAcompanhar = document.getElementById('btnAcompanharTraceLog');
+      var oBotaoAtivar        = document.getElementById('ativar');
+      var oBotaoDesativar     = document.getElementById('desativar');
+      var oBotaoTestar        = document.getElementById('testar');
+      var oBotaoAcompanhar    = document.getElementById('btnAcompanharTraceLog');
+      var oBotaoExtensionLogs = document.getElementById('btnExtensionLogs');
 
 
 
@@ -197,6 +199,12 @@ try {
           }
         );
       }
+
+      oBotaoExtensionLogs.onclick = function () {
+
+        sPathLogs = 'extension/log/error.log';
+        dowloadExtensionLogs(sPathLogs);
+      };
 
       /**
        * Valida de tracelog está ativo
@@ -304,6 +312,11 @@ try {
                                   'scrollbars=1,' +
                                   'resizable=0');
         oJanela.moveTo(0,0);
+      };
+
+      function dowloadExtensionLogs(sPathLogs) {
+        
+        js_arquivo_abrir( sPathLogs );
       };
 
     }
